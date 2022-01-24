@@ -12,7 +12,7 @@ formula_frm.grid()
 
 answer_text = ttk.Label(formula_frm)
 
-unit_list = ["W (arbeid in Joule)", "F (kracht in Newton)", "s (afstand in Meter)", "Vgem (gemiddelde snelheid in Meter per Seconde)", "t (tijd in Seconden)", "stoot (stoot in Newton Seconde)", "m (de massa in kilogram)"]
+unit_list = ["W (arbeid in Joule)", "F (kracht in Newton)", "s (afstand in Meter)", "Vgem (gemiddelde snelheid in Meter per Seconde)", "t (tijd in Seconden)", "stoot (stoot in Newton Seconde)", "m (de massa in kilogram)", "Wz (arbeid om iets omhoog te tillen in Joule)", "g (9,81 newton per kilogram)", "h (de verplaatsing omhoog in meter)"]
 
 def checkInputType(*args):
     print(f"Unit args: {args}")
@@ -32,6 +32,12 @@ def checkInputType(*args):
             type_list.append("stoot")
         elif unit == "m (de massa in kilogram)":
             type_list.append("m")
+        elif unit == "Wz (arbeid om iets omhoog te tillen in Joule)":
+            type_list.append("Wz")
+        elif unit == "g (9,81 newton per kilogram)":
+            type_list.append("g")
+        elif unit == "h (de verplaatsing omhoog in meter)":
+            type_list.append("h")
         else:
             pass
     return type_list
@@ -48,7 +54,7 @@ def checkForEmptyInput(*args):
 
 def findAndFormFormula(type_list):
     print(f"Type list: {type_list}")
-    formula_list = ["W=F*s", "stoot=F*t", "Vgem=s/t", "F*t=m*Vgem", "stoot=m*Vgem"]
+    formula_list = ["W=F*s", "stoot=F*t", "Vgem=s/t", "F*t=m*Vgem", "stoot=m*Vgem", "Wz=m*g*h"]
     used_formula = ""
     if len(type_list) == 2:
         for unit in type_list:
@@ -58,6 +64,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("Vgem=s/t")
                     formula_list.remove("F*t=m*Vgem")
                     formula_list.remove("stoot=m*Vgem")
+                    formula_list.remove("Wz=m*g*h")
                 except:
                     print("USER IS DUMB!")
             if unit == "stoot":
@@ -65,7 +72,8 @@ def findAndFormFormula(type_list):
                     formula_list.remove("W=F*s")
                     formula_list.remove("Vgem=s/t")
                     formula_list.remove("F*t=m*Vgem")
-                    if type_list[1] == "Vgem":
+                    formula_list.remove("Wz=m*g*h")
+                    if type_list[0] == "Vgem" or type_list[1] == "Vgem":
                         formula_list.remove("stoot=F*t")
                 except:
                     print("USER IS DUMB!")
@@ -74,6 +82,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("W=F*s")
                     formula_list.remove("stoot=F*t")
                     formula_list.remove("F*t=m*Vgem")
+                    formula_list.remove("Wz=m*g*h")
                 except:
                     print("USER IS DUMB!")
 
@@ -82,6 +91,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("Vgem=s/t")
                     formula_list.remove("stoot=m*Vgem")
                     formula_list.remove("F*t=m*Vgem")
+                    formula_list.remove("Wz=m*g*h")
                 except:
                     print("USER IS DUMB!")
             if unit == "s":
@@ -89,6 +99,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("stoot=F*t")
                     formula_list.remove("F*t=m*Vgem")
                     formula_list.remove("stoot=m*Vgem")
+                    formula_list.remove("Wz=m*g*h")
                 except:
                     print("USER IS DUMB!")
 
@@ -97,6 +108,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("W=F*s")
                     formula_list.remove("F*t=m*Vgem")
                     formula_list.remove("stoot=m*Vgem")
+                    formula_list.remove("Wz=m*g*h")
                 except:
                     print("USER IS DUMB!")
 
@@ -174,6 +186,35 @@ def findAndFormFormula(type_list):
                     formula_list.remove("Vgem=s/t")
                     formula_list.remove("W=F*s")
                     formula_list.remove("stoot=m*Vgem")
+                    if type_list[0] == "F" or type_list[1] == "F" or type_list[2] == "F" or type_list[3] == "F":
+                        formula_list.remove("Wz=m*g*h")
+                except:
+                    print("USER IS DUMB!")
+            if unit == "Wz":
+                try:
+                    formula_list.remove("stoot=F*t")
+                    formula_list.remove("Vgem=s/t")
+                    formula_list.remove("W=F*s")
+                    formula_list.remove("stoot=m*Vgem")
+                    formula_list.remove("F*t=m*Vgem")
+                except:
+                    print("USER IS DUMB!")
+            if unit == "g":
+                try:
+                    formula_list.remove("stoot=F*t")
+                    formula_list.remove("Vgem=s/t")
+                    formula_list.remove("W=F*s")
+                    formula_list.remove("stoot=m*Vgem")
+                    formula_list.remove("F*t=m*Vgem")
+                except:
+                    print("USER IS DUMB!")
+            if unit == "h":
+                try:
+                    formula_list.remove("stoot=F*t")
+                    formula_list.remove("Vgem=s/t")
+                    formula_list.remove("W=F*s")
+                    formula_list.remove("stoot=m*Vgem")
+                    formula_list.remove("F*t=m*Vgem")
                 except:
                     print("USER IS DUMB!")
             if unit == "F":
@@ -182,6 +223,8 @@ def findAndFormFormula(type_list):
                     formula_list.remove("Vgem=s/t")
                     formula_list.remove("W=F*s")
                     formula_list.remove("stoot=m*Vgem")
+                    formula_list.remove("Wz=m*g*h")
+                    
                 except:
                     print("USER IS DUMB!")
             if unit == "t":
@@ -190,6 +233,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("Vgem=s/t")
                     formula_list.remove("W=F*s")
                     formula_list.remove("stoot=m*Vgem")
+                    formula_list.remove("Wz=m*g*h")
                 except:
                     print("USER IS DUMB!")
             if unit == "Vgem":
@@ -198,6 +242,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("Vgem=s/t")
                     formula_list.remove("W=F*s")
                     formula_list.remove("stoot=m*Vgem")
+                    formula_list.remove("Wz=m*g*h")
                 except:
                     print("USER IS DUMB!")
         
@@ -255,6 +300,61 @@ def findAndFormFormula(type_list):
                 return "m=(2*0)/1"
             elif type_list[2] == "F" and type_list[1] == "t" and type_list[0] == "Vgem":
                 return "m=(2*1)/0"
+        
+
+
+        if used_formula == "Wz=m*g*h":
+            if type_list[0] == "m" and type_list[1] == "g" and type_list[2] == "h":
+                return "Wz=0*1*2"
+            elif type_list[0] == "m" and type_list[2] == "g" and type_list[1] == "h":
+                return "Wz=0*2*1"
+            elif type_list[1] == "m" and type_list[0] == "g" and type_list[2] == "h":
+                return "Wz=1*0*2"
+            elif type_list[1] == "m" and type_list[2] == "g" and type_list[0] == "h":
+                return "Wz=1*2*0"
+            elif type_list[2] == "m" and type_list[0] == "g" and type_list[1] == "h":
+                return "Wz=2*0*1"
+            elif type_list[2] == "m" and type_list[1] == "g" and type_list[0] == "h":
+                return "Wz=2*1*0"
+
+            if type_list[0] == "Wz" and type_list[1] == "g" and type_list[2] == "h":
+                return "m=0/(1*2)"
+            elif type_list[0] == "Wz" and type_list[2] == "g" and type_list[1] == "h":
+                return "m=0/(2*1)"
+            elif type_list[1] == "Wz" and type_list[0] == "g" and type_list[2] == "h":
+                return "m=1/(0*2)"
+            elif type_list[1] == "Wz" and type_list[2] == "g" and type_list[0] == "h":
+                return "m=1/(2*0)"
+            elif type_list[2] == "Wz" and type_list[0] == "g" and type_list[1] == "h":
+                return "m=2/(0*1)"
+            elif type_list[2] == "Wz" and type_list[1] == "g" and type_list[0] == "h":
+                return "m=2/(1*0)"
+
+            if type_list[0] == "Wz" and type_list[1] == "m" and type_list[2] == "h":
+                return "g=0/(1*2)"
+            elif type_list[0] == "Wz" and type_list[2] == "m" and type_list[1] == "h":
+                return "g=0/(2*1)"
+            elif type_list[1] == "Wz" and type_list[0] == "m" and type_list[2] == "h":
+                return "g=1/(0*2)"
+            elif type_list[1] == "Wz" and type_list[2] == "m" and type_list[0] == "h":
+                return "g=1/(2*0)"
+            elif type_list[2] == "Wz" and type_list[0] == "m" and type_list[1] == "h":
+                return "g=2/(0*1)"
+            elif type_list[2] == "Wz" and type_list[1] == "m" and type_list[0] == "h":
+                return "g=2/(1*0)"
+
+            if type_list[0] == "Wz" and type_list[1] == "m" and type_list[2] == "g":
+                return "h=0/(1*2)"
+            elif type_list[0] == "Wz" and type_list[2] == "m" and type_list[1] == "g":
+                return "h=0/(2*1)"
+            elif type_list[1] == "Wz" and type_list[0] == "m" and type_list[2] == "g":
+                return "h=1/(0*2)"
+            elif type_list[1] == "Wz" and type_list[2] == "m" and type_list[0] == "g":
+                return "h=1/(2*0)"
+            elif type_list[2] == "Wz" and type_list[0] == "m" and type_list[1] == "g":
+                return "h=2/(0*1)"
+            elif type_list[2] == "Wz" and type_list[1] == "m" and type_list[0] == "g":
+                return "h=2/(1*0)"
 
 
 def runCalculation(formula, value_list):
@@ -462,6 +562,106 @@ def runCalculation(formula, value_list):
         answer_calculation.grid(column=1, row=5)
         return str((float(value_list[0]) * float(value_list[1])) / float(value_list[2])) + " kilogram."
 
+
+    elif formula == "Wz=0*1*2":
+        answer_calculation = ttk.Label(formula_frm, text="Wz = m x g x h = " + f"{value_list[0]} x {value_list[1]} x {value_list[2]} = " + str((float(value_list[0]) * float(value_list[1])) * float(value_list[2])))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[0]) * float(value_list[1]) * float(value_list[2])) + " Joule."
+    elif formula == "Wz=0*2*1":
+        answer_calculation = ttk.Label(formula_frm, text="Wz = m x g x h = " + f"{value_list[0]} x {value_list[2]} x {value_list[1]} = " + str((float(value_list[0]) * float(value_list[2])) * float(value_list[1])))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[0]) * float(value_list[2]) * float(value_list[1])) + " Joule."
+    elif formula == "Wz=1*0*2":
+        answer_calculation = ttk.Label(formula_frm, text="Wz = m x g x h = " + f"{value_list[1]} x {value_list[0]} x {value_list[2]} = " + str((float(value_list[1]) * float(value_list[0])) * float(value_list[2])))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[1]) * float(value_list[0]) * float(value_list[2])) + " Joule."
+    elif formula == "Wz=1*2*0":
+        answer_calculation = ttk.Label(formula_frm, text="Wz = m x g x h = " + f"{value_list[1]} x {value_list[2]} x {value_list[0]} = " + str((float(value_list[1]) * float(value_list[2])) * float(value_list[0])))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[1]) * float(value_list[2]) * float(value_list[0])) + " Joule."
+    elif formula == "Wz=2*0*1":
+        answer_calculation = ttk.Label(formula_frm, text="Wz = m x g x h = " + f"{value_list[2]} x {value_list[0]} x {value_list[1]} = " + str((float(value_list[2]) * float(value_list[0])) * float(value_list[1])))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[2]) * float(value_list[0]) * float(value_list[1])) + " Joule."
+    elif formula == "Wz=2*1*0":
+        answer_calculation = ttk.Label(formula_frm, text="Wz = m x g x h = " + f"{value_list[2]} x {value_list[1]} x {value_list[0]} = " + str((float(value_list[2]) * float(value_list[1])) * float(value_list[0])))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[2]) * float(value_list[1]) * float(value_list[0])) + " Joule."
+
+    elif formula == "m=0/(1*2)":
+        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[0]} x {value_list[1]} x {value_list[2]} = " + str((float(value_list[0]) / (float(value_list[1]) * float(value_list[2])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[0]) / (float(value_list[1]) * float(value_list[2]))) + " kilogram."
+    elif formula == "m=0/(2*1)":
+        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[0]} x {value_list[2]} x {value_list[1]} = " + str((float(value_list[0]) / (float(value_list[2]) * float(value_list[1])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[0]) / (float(value_list[2]) * float(value_list[1]))) + " kilogram."
+    elif formula == "m=1/(0*2)":
+        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[1]} x {value_list[0]} x {value_list[2]} = " + str((float(value_list[1]) / (float(value_list[0]) * float(value_list[2])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[1]) / (float(value_list[0]) * float(value_list[2]))) + " kilogram."
+    elif formula == "m=1/(2*0)":
+        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[1]} x {value_list[2]} x {value_list[0]} = " + str((float(value_list[1]) / (float(value_list[2]) * float(value_list[0])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[1]) / (float(value_list[2]) * float(value_list[0]))) + " kilogram."
+    elif formula == "m=2/(0*1)":
+        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[2]} x {value_list[0]} x {value_list[1]} = " + str((float(value_list[2]) / (float(value_list[0]) * float(value_list[1])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[2]) / (float(value_list[0]) * float(value_list[1]))) + " kilogram."
+    elif formula == "m=2/(1*0)":
+        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[2]} ÷ ({value_list[1]} x {value_list[0]}) = " + str((float(value_list[2]) / (float(value_list[1]) * float(value_list[0])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[2]) / (float(value_list[1]) * float(value_list[0]))) + " kilogram."
+
+    elif formula == "g=0/(1*2)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[0]} x {value_list[1]} x {value_list[2]} = " + str((float(value_list[0]) / (float(value_list[1]) * float(value_list[2])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[0]) / (float(value_list[1]) * float(value_list[2]))) + " Newton per kilogram."
+    elif formula == "g=0/(2*1)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[0]} x {value_list[2]} x {value_list[1]} = " + str((float(value_list[0]) / (float(value_list[2]) * float(value_list[1])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[0]) / (float(value_list[2]) * float(value_list[1]))) + " Newton per kilogram."
+    elif formula == "g=1/(0*2)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[1]} x {value_list[0]} x {value_list[2]} = " + str((float(value_list[1]) / (float(value_list[0]) * float(value_list[2])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[1]) / (float(value_list[0]) * float(value_list[2]))) + " Newton per kilogram."
+    elif formula == "g=1/(2*0)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[1]} x {value_list[2]} x {value_list[0]} = " + str((float(value_list[1]) / (float(value_list[2]) * float(value_list[0])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[1]) / (float(value_list[2]) * float(value_list[0]))) + " Newton per kilogram."
+    elif formula == "g=2/(0*1)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[2]} x {value_list[0]} x {value_list[1]} = " + str((float(value_list[2]) / (float(value_list[0]) * float(value_list[1])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[2]) / (float(value_list[0]) * float(value_list[1]))) + " Newton per kilogram."
+    elif formula == "g=2/(1*0)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[2]} ÷ ({value_list[1]} x {value_list[0]}) = " + str((float(value_list[2]) / (float(value_list[1]) * float(value_list[0])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[2]) / (float(value_list[1]) * float(value_list[0]))) + " Newton per kilogram."
+
+    elif formula == "h=0/(1*2)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[0]} x {value_list[1]} x {value_list[2]} = " + str((float(value_list[0]) / (float(value_list[1]) * float(value_list[2])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[0]) / (float(value_list[1]) * float(value_list[2]))) + " Meter."
+    elif formula == "h=0/(2*1)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[0]} x {value_list[2]} x {value_list[1]} = " + str((float(value_list[0]) / (float(value_list[2]) * float(value_list[1])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[0]) / (float(value_list[2]) * float(value_list[1]))) + " Meter."
+    elif formula == "h=1/(0*2)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[1]} x {value_list[0]} x {value_list[2]} = " + str((float(value_list[1]) / (float(value_list[0]) * float(value_list[2])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[1]) / (float(value_list[0]) * float(value_list[2]))) + " Meter."
+    elif formula == "h=1/(2*0)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[1]} x {value_list[2]} x {value_list[0]} = " + str((float(value_list[1]) / (float(value_list[2]) * float(value_list[0])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[1]) / (float(value_list[2]) * float(value_list[0]))) + " Meter."
+    elif formula == "h=2/(0*1)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[2]} x {value_list[0]} x {value_list[1]} = " + str((float(value_list[2]) / (float(value_list[0]) * float(value_list[1])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[2]) / (float(value_list[0]) * float(value_list[1]))) + " Meter."
+    elif formula == "h=2/(1*0)":
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[2]} ÷ ({value_list[1]} x {value_list[0]}) = " + str((float(value_list[2]) / (float(value_list[1]) * float(value_list[0])))))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[2]) / (float(value_list[1]) * float(value_list[0]))) + " Meter."
 
 def showAnswer(answer):
     print(f"Answer: {answer}")
