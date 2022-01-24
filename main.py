@@ -589,23 +589,23 @@ def runCalculation(formula, value_list):
         return str(float(value_list[2]) * float(value_list[1]) * float(value_list[0])) + " Joule."
 
     elif formula == "m=0/(1*2)":
-        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[0]} x {value_list[1]} x {value_list[2]} = " + str((float(value_list[0]) / (float(value_list[1]) * float(value_list[2])))))
+        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[0]} ÷ ({value_list[1]} x {value_list[2]}) = " + str((float(value_list[0]) / (float(value_list[1]) * float(value_list[2])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[0]) / (float(value_list[1]) * float(value_list[2]))) + " kilogram."
     elif formula == "m=0/(2*1)":
-        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[0]} x {value_list[2]} x {value_list[1]} = " + str((float(value_list[0]) / (float(value_list[2]) * float(value_list[1])))))
+        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[0]} ÷ ({value_list[2]} x {value_list[1]}) = " + str((float(value_list[0]) / (float(value_list[2]) * float(value_list[1])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[0]) / (float(value_list[2]) * float(value_list[1]))) + " kilogram."
     elif formula == "m=1/(0*2)":
-        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[1]} x {value_list[0]} x {value_list[2]} = " + str((float(value_list[1]) / (float(value_list[0]) * float(value_list[2])))))
+        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[1]} ÷ ({value_list[0]} x {value_list[2]}) = " + str((float(value_list[1]) / (float(value_list[0]) * float(value_list[2])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[1]) / (float(value_list[0]) * float(value_list[2]))) + " kilogram."
     elif formula == "m=1/(2*0)":
-        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[1]} x {value_list[2]} x {value_list[0]} = " + str((float(value_list[1]) / (float(value_list[2]) * float(value_list[0])))))
+        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[1]} ÷ ({value_list[2]} x {value_list[0]}) = " + str((float(value_list[1]) / (float(value_list[2]) * float(value_list[0])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[1]) / (float(value_list[2]) * float(value_list[0]))) + " kilogram."
     elif formula == "m=2/(0*1)":
-        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[2]} x {value_list[0]} x {value_list[1]} = " + str((float(value_list[2]) / (float(value_list[0]) * float(value_list[1])))))
+        answer_calculation = ttk.Label(formula_frm, text="m = Wz ÷ (g x h) = " + f"{value_list[2]} ÷ ({value_list[0]} x {value_list[1]}) = " + str((float(value_list[2]) / (float(value_list[0]) * float(value_list[1])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[2]) / (float(value_list[0]) * float(value_list[1]))) + " kilogram."
     elif formula == "m=2/(1*0)":
@@ -614,23 +614,23 @@ def runCalculation(formula, value_list):
         return str(float(value_list[2]) / (float(value_list[1]) * float(value_list[0]))) + " kilogram."
 
     elif formula == "g=0/(1*2)":
-        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[0]} x {value_list[1]} x {value_list[2]} = " + str((float(value_list[0]) / (float(value_list[1]) * float(value_list[2])))))
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[0]} ÷ ({value_list[1]} x {value_list[2]}) = " + str((float(value_list[0]) / (float(value_list[1]) * float(value_list[2])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[0]) / (float(value_list[1]) * float(value_list[2]))) + " Newton per kilogram."
     elif formula == "g=0/(2*1)":
-        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[0]} x {value_list[2]} x {value_list[1]} = " + str((float(value_list[0]) / (float(value_list[2]) * float(value_list[1])))))
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[0]} ÷ ({value_list[2]} x {value_list[1]}) = " + str((float(value_list[0]) / (float(value_list[2]) * float(value_list[1])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[0]) / (float(value_list[2]) * float(value_list[1]))) + " Newton per kilogram."
     elif formula == "g=1/(0*2)":
-        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[1]} x {value_list[0]} x {value_list[2]} = " + str((float(value_list[1]) / (float(value_list[0]) * float(value_list[2])))))
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[1]} ÷ ({value_list[0]} x {value_list[2]}) = " + str((float(value_list[1]) / (float(value_list[0]) * float(value_list[2])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[1]) / (float(value_list[0]) * float(value_list[2]))) + " Newton per kilogram."
     elif formula == "g=1/(2*0)":
-        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[1]} x {value_list[2]} x {value_list[0]} = " + str((float(value_list[1]) / (float(value_list[2]) * float(value_list[0])))))
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[1]} ÷ ({value_list[2]} x {value_list[0]}) = " + str((float(value_list[1]) / (float(value_list[2]) * float(value_list[0])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[1]) / (float(value_list[2]) * float(value_list[0]))) + " Newton per kilogram."
     elif formula == "g=2/(0*1)":
-        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[2]} x {value_list[0]} x {value_list[1]} = " + str((float(value_list[2]) / (float(value_list[0]) * float(value_list[1])))))
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x h) = " + f"{value_list[2]} ÷ ({value_list[0]} x {value_list[1]}) = " + str((float(value_list[2]) / (float(value_list[0]) * float(value_list[1])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[2]) / (float(value_list[0]) * float(value_list[1]))) + " Newton per kilogram."
     elif formula == "g=2/(1*0)":
@@ -639,23 +639,23 @@ def runCalculation(formula, value_list):
         return str(float(value_list[2]) / (float(value_list[1]) * float(value_list[0]))) + " Newton per kilogram."
 
     elif formula == "h=0/(1*2)":
-        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[0]} x {value_list[1]} x {value_list[2]} = " + str((float(value_list[0]) / (float(value_list[1]) * float(value_list[2])))))
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[0]} ÷ ({value_list[1]} x {value_list[2]}) = " + str((float(value_list[0]) / (float(value_list[1]) * float(value_list[2])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[0]) / (float(value_list[1]) * float(value_list[2]))) + " Meter."
     elif formula == "h=0/(2*1)":
-        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[0]} x {value_list[2]} x {value_list[1]} = " + str((float(value_list[0]) / (float(value_list[2]) * float(value_list[1])))))
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[0]} ÷ ({value_list[2]} x {value_list[1]}) = " + str((float(value_list[0]) / (float(value_list[2]) * float(value_list[1])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[0]) / (float(value_list[2]) * float(value_list[1]))) + " Meter."
     elif formula == "h=1/(0*2)":
-        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[1]} x {value_list[0]} x {value_list[2]} = " + str((float(value_list[1]) / (float(value_list[0]) * float(value_list[2])))))
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[1]} ÷ ({value_list[0]} x {value_list[2]}) = " + str((float(value_list[1]) / (float(value_list[0]) * float(value_list[2])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[1]) / (float(value_list[0]) * float(value_list[2]))) + " Meter."
     elif formula == "h=1/(2*0)":
-        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[1]} x {value_list[2]} x {value_list[0]} = " + str((float(value_list[1]) / (float(value_list[2]) * float(value_list[0])))))
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[1]} ÷ ({value_list[2]} x {value_list[0]}) = " + str((float(value_list[1]) / (float(value_list[2]) * float(value_list[0])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[1]) / (float(value_list[2]) * float(value_list[0]))) + " Meter."
     elif formula == "h=2/(0*1)":
-        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[2]} x {value_list[0]} x {value_list[1]} = " + str((float(value_list[2]) / (float(value_list[0]) * float(value_list[1])))))
+        answer_calculation = ttk.Label(formula_frm, text="g = Wz ÷ (m x g) = " + f"{value_list[2]} ÷ ({value_list[0]} x {value_list[1]}) = " + str((float(value_list[2]) / (float(value_list[0]) * float(value_list[1])))))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[2]) / (float(value_list[0]) * float(value_list[1]))) + " Meter."
     elif formula == "h=2/(1*0)":
