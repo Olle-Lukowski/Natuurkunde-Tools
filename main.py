@@ -308,6 +308,8 @@ def findAndFormFormula(type_list):
                 return "Wz=0*1*2"
             elif type_list[0] == "m" and type_list[2] == "g" and type_list[1] == "h":
                 return "Wz=0*2*1"
+            elif type_list[0] == "m" and type_list[2] == "g" and type_list[1] == "h":
+                return "Wz=0*2*1"
             elif type_list[1] == "m" and type_list[0] == "g" and type_list[2] == "h":
                 return "Wz=1*0*2"
             elif type_list[1] == "m" and type_list[2] == "g" and type_list[0] == "h":
@@ -585,6 +587,10 @@ def runCalculation(formula, value_list):
         return str(float(value_list[2]) * float(value_list[0]) * float(value_list[1])) + " Joule."
     elif formula == "Wz=2*1*0":
         answer_calculation = ttk.Label(formula_frm, text="Wz = m x g x h = " + f"{value_list[2]} x {value_list[1]} x {value_list[0]} = " + str((float(value_list[2]) * float(value_list[1])) * float(value_list[0])))
+        answer_calculation.grid(column=1, row=5)
+        return str(float(value_list[2]) * float(value_list[1]) * float(value_list[0])) + " Joule."
+    elif formula == "Wz=0*2*1":
+        answer_calculation = ttk.Label(formula_frm, text="Wz = m x g x h = " + f"{value_list[0]} x {value_list[2]} x {value_list[1]} = " + str((float(value_list[0]) * float(value_list[2])) * float(value_list[1])))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[2]) * float(value_list[1]) * float(value_list[0])) + " Joule."
 
