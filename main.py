@@ -16,30 +16,47 @@ unit_list = ["W (arbeid in Joule)", "F (kracht in Newton)", "s (afstand in Meter
 
 def checkInputType(*args):
     print(f"Unit args: {args}")
+    EpicDictCounter = 0
+    global EpicDict
+    EpicDict = {"W": None, "F": None, "s": None, "Vgem": None, "t": None, "stoot": None, "m": None, "Wz": None, "g": None, "h": None}
     type_list = []
+    global Epicvalue_list
+    Epicvalue_list = checkForEmptyInput()
     for unit in args:
+        EpicDictValue = f"Epicvalue_list[{EpicDictCounter}]"
         if unit == "W (arbeid in Joule)":
             type_list.append("W")
+            EpicDict["W"] = eval(EpicDictValue)
         elif unit == "F (kracht in Newton)":
             type_list.append("F")
+            EpicDict["F"] = eval(EpicDictValue)
         elif unit == "s (afstand in Meter)":
             type_list.append("s")
+            EpicDict["s"] = eval(EpicDictValue)
         elif unit == "Vgem (gemiddelde snelheid in Meter per Seconde)":
             type_list.append("Vgem")
+            EpicDict["Vgem"] = eval(EpicDictValue)
         elif unit == "t (tijd in Seconden)":
             type_list.append("t")
+            EpicDict["t"] = eval(EpicDictValue)
         elif unit == "stoot (stoot in Newton Seconde)":
             type_list.append("stoot")
+            EpicDict["stoot"] = eval(EpicDictValue)
         elif unit == "m (de massa in kilogram)":
             type_list.append("m")
+            EpicDict["m"] = eval(EpicDictValue)
         elif unit == "Wz (arbeid om iets omhoog te tillen in Joule)":
             type_list.append("Wz")
+            EpicDict["Wz"] = eval(EpicDictValue)
         elif unit == "g (9,81 newton per kilogram)":
             type_list.append("g")
+            EpicDict["g"] = eval(EpicDictValue)
         elif unit == "h (de verplaatsing omhoog in meter)":
             type_list.append("h")
+            EpicDict["h"] = eval(EpicDictValue)
         else:
             pass
+        EpicDictCounter += 1
     return type_list
 
 
@@ -115,68 +132,44 @@ def findAndFormFormula(type_list):
         used_formula = formula_list[0]
         print(f"Used Formula: {used_formula}")
         if used_formula == "W=F*s":
-            if type_list[0] == "F" and type_list[1] == "s":
-                return "W=1*2"
-            elif type_list[0] == "s" and type_list[1] == "F":
-                return "W=2*1"
+            if EpicDict["W"] == None:
+                return "W=F*s"
 
-            if type_list[0] == "W" and type_list[1] == "F":
-                return "s=1/2"
-            elif type_list[0] == "F" and type_list[1] == "W":
-                return "s=2/1"
+            elif EpicDict["s"] == None:
+                return "s=W/F"
 
-            if type_list[0] == "W" and type_list[1] == "s":
-                return "F=1/2"
-            elif type_list[0] == "s" and type_list[1] == "W":
-                return "F=2/1"
+            elif EpicDict["F"] == None:
+                return "F=W/s"
 
         if used_formula == "stoot=F*t":
-            if type_list[0] == "F" and type_list[1] == "t":
-                return "stoot=1*2"
-            elif type_list[0] == "t" and type_list[1] == "F":
-                return "stoot=2*1"
+            if EpicDict["stoot"] == None:
+                return "stoot=F*t"
 
-            if type_list[0] == "stoot" and type_list[1] == "F":
-                return "t=1/2"
-            elif type_list[0] == "F" and type_list[1] == "stoot":
-                return "t=2/1"
+            elif EpicDict["t"] == None:
+                return "t=stoot/F"
 
-            if type_list[0] == "stoot" and type_list[1] == "t":
-                return "F=1/2"
-            elif type_list[0] == "t" and type_list[1] == "stoot":
-                return "F=2/1"
+            elif EpicDict["F"] == None:
+                return "F=stoot/t"
 
         if used_formula == "Vgem=s/t":
-            if type_list[0] == "s" and type_list[1] == "t":
-                return "Vgem=1/2"
-            elif type_list[0] == "t" and type_list[1] == "s":
-                return "Vgem=2/1"
+            if EpicDict["Vgem"] == None:
+                return "Vgem=s/t"
 
-            if type_list[0] == "Vgem" and type_list[1] == "s":
-                return "t=2/1"
-            elif type_list[0] == "s" and type_list[1] == "Vgem":
-                return "t=1/2"
+            elif EpicDict["t"] == None:
+                return "t=s/Vgem"
 
-            if type_list[0] == "Vgem" and type_list[1] == "t":
-                return "s=1*2"
-            elif type_list[0] == "t" and type_list[1] == "Vgem":
-                return "s=2*1"
+            elif EpicDict["s"] == None:
+                return "s=Vgem*t"
 
         if used_formula == "stoot=m*Vgem":
-            if type_list[0] == "m" and type_list[1] == "Vgem":
-                return "stoot2=1*2"
-            elif type_list[0] == "Vgem" and type_list[1] == "m":
-                return "stoot2=2*1"
+            if EpicDict["stoot"] == None:
+                return "stoot=m*Vgem"
 
-            if type_list[0] == "stoot" and type_list[1] == "m":
-                return "Vgem2=1/2"
-            elif type_list[0] == "m" and type_list[1] == "stoot":
-                return "Vgem2=2/1"
+            elif EpicDict["Vgem"] == None:
+                return "Vgem=stoot/m"
 
-            if type_list[0] == "stoot" and type_list[1] == "Vgem":
-                return "m=1/2"
-            elif type_list[0] == "Vgem" and type_list[1] == "stoot":
-                return "m=2/1"
+            elif EpicDict["m"] == None:
+                return "m=stoot/Vgem"
 
     elif len(type_list) == 3:
         for unit in type_list:
@@ -186,10 +179,10 @@ def findAndFormFormula(type_list):
                     formula_list.remove("Vgem=s/t")
                     formula_list.remove("W=F*s")
                     formula_list.remove("stoot=m*Vgem")
-                    if type_list[0] == "F" or type_list[1] == "F" or type_list[2] == "F" or type_list[3] == "F":
+                    if EpicDict["F"] != None:
                         formula_list.remove("Wz=m*g*h")
                 except:
-                    print("USER IS DUMB!")
+                    print("EpicDict!")
             if unit == "Wz":
                 try:
                     formula_list.remove("stoot=F*t")
@@ -198,7 +191,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("stoot=m*Vgem")
                     formula_list.remove("F*t=m*Vgem")
                 except:
-                    print("USER IS DUMB!")
+                    print("EpicDict!")
             if unit == "g":
                 try:
                     formula_list.remove("stoot=F*t")
@@ -207,7 +200,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("stoot=m*Vgem")
                     formula_list.remove("F*t=m*Vgem")
                 except:
-                    print("USER IS DUMB!")
+                    print("EpicDict!")
             if unit == "h":
                 try:
                     formula_list.remove("stoot=F*t")
@@ -216,7 +209,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("stoot=m*Vgem")
                     formula_list.remove("F*t=m*Vgem")
                 except:
-                    print("USER IS DUMB!")
+                    print("EpicDict!")
             if unit == "F":
                 try:
                     formula_list.remove("stoot=F*t")
@@ -226,7 +219,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("Wz=m*g*h")
                     
                 except:
-                    print("USER IS DUMB!")
+                    print("EpicDict!")
             if unit == "t":
                 try:
                     formula_list.remove("stoot=F*t")
@@ -235,7 +228,7 @@ def findAndFormFormula(type_list):
                     formula_list.remove("stoot=m*Vgem")
                     formula_list.remove("Wz=m*g*h")
                 except:
-                    print("USER IS DUMB!")
+                    print("EpicDict!")
             if unit == "Vgem":
                 try:
                     formula_list.remove("stoot=F*t")
@@ -244,148 +237,56 @@ def findAndFormFormula(type_list):
                     formula_list.remove("stoot=m*Vgem")
                     formula_list.remove("Wz=m*g*h")
                 except:
-                    print("USER IS DUMB!")
+                    print("EpicDict!")
         
         used_formula = formula_list[0]
         print(f"Used Formula: {used_formula}")
         if used_formula == "F*t=m*Vgem":
-            if type_list[0] == "F" and type_list[1] == "t" and type_list[2] == "m":
-                return "Vgem=(0*1)/2"
-            elif type_list[0] == "F" and type_list[2] == "t" and type_list[1] == "m":
-                return "Vgem=(0*2)/1"
-            elif type_list[1] == "F" and type_list[0] == "t" and type_list[2] == "m":
-                return "Vgem=(1*0)/2"
-            elif type_list[1] == "F" and type_list[2] == "t" and type_list[0] == "m":
-                return "Vgem=(1*2)/0"
-            elif type_list[2] == "F" and type_list[0] == "t" and type_list[1] == "m":
-                return "Vgem=(2*0)/1"
-            elif type_list[2] == "F" and type_list[1] == "t" and type_list[0] == "m":
-                return "Vgem=(2*1)/0"
+            if EpicDict["Vgem"] == None:
+                return "Vgem=(F*t)/m"
 
-            if type_list[0] == "m" and type_list[1] == "Vgem" and type_list[2] == "t":
-                return "F=(0*1)/2"
-            elif type_list[0] == "m" and type_list[2] == "Vgem" and type_list[1] == "t":
-                return "F=(0*2)/1"
-            elif type_list[1] == "m" and type_list[0] == "Vgem" and type_list[2] == "t":
-                return "F=(1*0)/2"
-            elif type_list[1] == "m" and type_list[2] == "Vgem" and type_list[0] == "t":
-                return "F=(1*2)/0"
-            elif type_list[2] == "m" and type_list[0] == "Vgem" and type_list[1] == "t":
-                return "F=(2*0)/1"
-            elif type_list[2] == "m" and type_list[1] == "Vgem" and type_list[0] == "t":
-                return "F=(2*1)/0"
+            elif EpicDict["F"] == None:
+                return "F=(m*Vgem)/t"
 
-            if type_list[0] == "m" and type_list[1] == "Vgem" and type_list[2] == "F":
-                return "t=(0*1)/2"
-            elif type_list[0] == "m" and type_list[2] == "Vgem" and type_list[1] == "F":
-                return "t=(0*2)/1"
-            elif type_list[1] == "m" and type_list[0] == "Vgem" and type_list[2] == "F":
-                return "t=(1*0)/2"
-            elif type_list[1] == "m" and type_list[2] == "Vgem" and type_list[0] == "F":
-                return "t=(1*2)/0"
-            elif type_list[2] == "m" and type_list[0] == "Vgem" and type_list[1] == "F":
-                return "t=(2*0)/1"
-            elif type_list[2] == "m" and type_list[1] == "Vgem" and type_list[0] == "F":
-                return "t=(2*1)/0"
+            elif EpicDict["t"] == None:
+                return "t=(m*Vgem)/F"
 
-            if type_list[0] == "F" and type_list[1] == "t" and type_list[2] == "Vgem":
-                return "m=(0*1)/2"
-            elif type_list[0] == "F" and type_list[2] == "t" and type_list[1] == "Vgem":
-                return "m=(0*2)/1"
-            elif type_list[1] == "F" and type_list[0] == "t" and type_list[2] == "Vgem":
-                return "m=(1*0)/2"
-            elif type_list[1] == "F" and type_list[2] == "t" and type_list[0] == "Vgem":
-                return "m=(1*2)/0"
-            elif type_list[2] == "F" and type_list[0] == "t" and type_list[1] == "Vgem":
-                return "m=(2*0)/1"
-            elif type_list[2] == "F" and type_list[1] == "t" and type_list[0] == "Vgem":
-                return "m=(2*1)/0"
-        
-
+            elif EpicDict["m"] == None:
+                return "m=(F*t)/Vgem"
 
         if used_formula == "Wz=m*g*h":
-            if type_list[0] == "m" and type_list[1] == "g" and type_list[2] == "h":
-                return "Wz=0*1*2"
-            elif type_list[0] == "m" and type_list[2] == "g" and type_list[1] == "h":
-                return "Wz=0*2*1"
-            elif type_list[0] == "m" and type_list[2] == "g" and type_list[1] == "h":
-                return "Wz=0*2*1"
-            elif type_list[1] == "m" and type_list[0] == "g" and type_list[2] == "h":
-                return "Wz=1*0*2"
-            elif type_list[1] == "m" and type_list[2] == "g" and type_list[0] == "h":
-                return "Wz=1*2*0"
-            elif type_list[2] == "m" and type_list[0] == "g" and type_list[1] == "h":
-                return "Wz=2*0*1"
-            elif type_list[2] == "m" and type_list[1] == "g" and type_list[0] == "h":
-                return "Wz=2*1*0"
+            if EpicDict["Wz"] == None:
+                return "Wz=m*g*h"
 
-            if type_list[0] == "Wz" and type_list[1] == "g" and type_list[2] == "h":
-                return "m=0/(1*2)"
-            elif type_list[0] == "Wz" and type_list[2] == "g" and type_list[1] == "h":
-                return "m=0/(2*1)"
-            elif type_list[1] == "Wz" and type_list[0] == "g" and type_list[2] == "h":
-                return "m=1/(0*2)"
-            elif type_list[1] == "Wz" and type_list[2] == "g" and type_list[0] == "h":
-                return "m=1/(2*0)"
-            elif type_list[2] == "Wz" and type_list[0] == "g" and type_list[1] == "h":
-                return "m=2/(0*1)"
-            elif type_list[2] == "Wz" and type_list[1] == "g" and type_list[0] == "h":
-                return "m=2/(1*0)"
+            elif EpicDict["m"] == None:
+                return "m=Wz/(g*h)"
 
-            if type_list[0] == "Wz" and type_list[1] == "m" and type_list[2] == "h":
-                return "g=0/(1*2)"
-            elif type_list[0] == "Wz" and type_list[2] == "m" and type_list[1] == "h":
-                return "g=0/(2*1)"
-            elif type_list[1] == "Wz" and type_list[0] == "m" and type_list[2] == "h":
-                return "g=1/(0*2)"
-            elif type_list[1] == "Wz" and type_list[2] == "m" and type_list[0] == "h":
-                return "g=1/(2*0)"
-            elif type_list[2] == "Wz" and type_list[0] == "m" and type_list[1] == "h":
-                return "g=2/(0*1)"
-            elif type_list[2] == "Wz" and type_list[1] == "m" and type_list[0] == "h":
-                return "g=2/(1*0)"
+            elif EpicDict["g"] == None:
+                return "g=Wz/(m*h)"
 
-            if type_list[0] == "Wz" and type_list[1] == "m" and type_list[2] == "g":
-                return "h=0/(1*2)"
-            elif type_list[0] == "Wz" and type_list[2] == "m" and type_list[1] == "g":
-                return "h=0/(2*1)"
-            elif type_list[1] == "Wz" and type_list[0] == "m" and type_list[2] == "g":
-                return "h=1/(0*2)"
-            elif type_list[1] == "Wz" and type_list[2] == "m" and type_list[0] == "g":
-                return "h=1/(2*0)"
-            elif type_list[2] == "Wz" and type_list[0] == "m" and type_list[1] == "g":
-                return "h=2/(0*1)"
-            elif type_list[2] == "Wz" and type_list[1] == "m" and type_list[0] == "g":
-                return "h=2/(1*0)"
+            elif EpicDict["h"] == None:
+                return "h=Wz/(m*g)"
 
 
 def runCalculation(formula, value_list):
     print(f"Formula: {formula}")
     print(f"Value list: {value_list}")
-    if formula == "W=1*2":
-        answer_calculation = ttk.Label(formula_frm, text="W = F x s = " + f"{value_list[0]} x {value_list[1]} = " + str(float(value_list[0]) * float(value_list[1])))
+    print(EpicDict)
+    if formula == "W=F*s":
+        answer_calculation = ttk.Label(formula_frm, text="W = F x s = " + "{0} x {1} = ".format(EpicDict["F"], EpicDict["s"]) + str(float(EpicDict["F"]) * float(EpicDict["s"])))
         answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[0])*float(value_list[1])) + " Joule."
-    elif formula == "W=2*1":
-        answer_calculation = ttk.Label(formula_frm, text="W = F x s = " + f"{value_list[1]} x {value_list[0]} = " + str(float(value_list[1]) * float(value_list[0])))
+        return str(float(EpicDict["F"])*float(EpicDict["s"])) + " Joule."
+
+    elif formula == "s=W/F":
+        answer_calculation = ttk.Label(formula_frm, text="s = W ÷ F = " + "{0} ÷ {1} = ".format(EpicDict["W"], EpicDict["F"]) + str(float(EpicDict["W"]) / float(EpicDict["F"])))
         answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[1])*float(value_list[0])) + " Joule."
-    elif formula == "s=1/2":
-        answer_calculation = ttk.Label(formula_frm, text="s = W ÷ F = " + f"{value_list[0]} ÷ {value_list[1]} = " + str(float(value_list[0]) / float(value_list[1])))
+        return str(float(EpicDict["F"])/float(EpicDict["F"])) + " Meter."
+    
+    elif formula == "F=W/s":
+        answer_calculation = ttk.Label(formula_frm, text="F = W ÷ s = " + "{0} ÷ {1} = ".format(EpicDict["W"], EpicDict["s"]) + str(float(EpicDict["W"]) / float(EpicDict["s"])))
         answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[0])/float(value_list[1])) + " Meter."
-    elif formula == "s=2/1":
-        answer_calculation = ttk.Label(formula_frm, text="s = W ÷ F = " + f"{value_list[1]} ÷ {value_list[0]} = " + str(float(value_list[1]) / float(value_list[0])))
-        answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[1])/float(value_list[0])) + " Meter."
-    elif formula == "F=1/2":
-        answer_calculation = ttk.Label(formula_frm, text="F = W ÷ s = " + f"{value_list[0]} ÷ {value_list[1]} = " + str(float(value_list[0]) / float(value_list[1])))
-        answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[0])/float(value_list[1])) + " Newton."
-    elif formula == "F=2/1":
-        answer_calculation = ttk.Label(formula_frm, text="F = W ÷ s = " + f"{value_list[1]} ÷ {value_list[0]} = " + str(float(value_list[1]) / float(value_list[0])))
-        answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[1])/float(value_list[0])) + " Newton."
+        return str(float(EpicDict["W"])/float(EpicDict["s"])) + " Newton."
+    
 
     elif formula == "stoot=1*2":
         answer_calculation = ttk.Label(formula_frm, text="stoot = F x t = " + f"{value_list[0]} x {value_list[1]} = " + str(float(value_list[0]) * float(value_list[1])))
@@ -676,6 +577,9 @@ def showAnswer(answer):
 
 
 def formulaFinder():
+    global value1
+    global value2
+    global value3
     ttk.Label(formula_frm, text="Eerste Gegeven Eenheid:").grid(column=0, row=0)
     unit1 = ttk.Combobox(formula_frm, values=unit_list, width=50)
     unit1.grid(column=1, row=0)
@@ -694,7 +598,7 @@ def formulaFinder():
     ttk.Label(formula_frm, text="Derde Gegeven Waarde:").grid(column=2, row=2)
     value3 = ttk.Entry(formula_frm, width=20)
     value3.grid(column=3, row=2)
-    calculate_button = ttk.Button(formula_frm, command=lambda: showAnswer(runCalculation(findAndFormFormula(checkInputType(unit1.get(), unit2.get(), unit3.get())), checkForEmptyInput(value1.get(), value2.get(), value3.get()))), text="Bereken!")
+    calculate_button = ttk.Button(formula_frm, command=lambda: showAnswer(runCalculation(findAndFormFormula(checkInputType(unit1.get(), unit2.get(), unit3.get())), checkForEmptyInput())), text="Bereken!")
     calculate_button.grid(column=1, row=4)
     main_frm.destroy()
 
