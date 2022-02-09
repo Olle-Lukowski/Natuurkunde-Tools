@@ -22,8 +22,9 @@ def checkInputType(*args):
     type_list = []
     global Epicvalue_list
     Epicvalue_list = checkForEmptyInput()
+    print(f"{Epicvalue_list} YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
     for unit in args:
-        EpicDictValue = f"Epicvalue_list[{EpicDictCounter}]"
+        EpicDictValue = "Epicvalue_list[{0}]".format(EpicDictCounter)
         if unit == "W (arbeid in Joule)":
             type_list.append("W")
             EpicDict["W"] = eval(EpicDictValue)
@@ -577,9 +578,6 @@ def showAnswer(answer):
 
 
 def formulaFinder():
-    global value1
-    global value2
-    global value3
     ttk.Label(formula_frm, text="Eerste Gegeven Eenheid:").grid(column=0, row=0)
     unit1 = ttk.Combobox(formula_frm, values=unit_list, width=50)
     unit1.grid(column=1, row=0)
