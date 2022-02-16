@@ -16,45 +16,41 @@ unit_list = ["W (arbeid in Joule)", "F (kracht in Newton)", "s (afstand in Meter
 
 def checkInputType(*args):
     print(f"Unit args: {args}")
-    EpicDictCounter = 0
+    EpicDictCounter = int(0)
     global EpicDict
     EpicDict = {"W": None, "F": None, "s": None, "Vgem": None, "t": None, "stoot": None, "m": None, "Wz": None, "g": None, "h": None}
     type_list = []
-    global Epicvalue_list
-    Epicvalue_list = checkForEmptyInput()
-    print(f"{Epicvalue_list} YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
     for unit in args:
-        EpicDictValue = "Epicvalue_list[{0}]".format(EpicDictCounter)
         if unit == "W (arbeid in Joule)":
             type_list.append("W")
-            EpicDict["W"] = eval(EpicDictValue)
+            EpicDict["W"] = EpicDictCounter
         elif unit == "F (kracht in Newton)":
             type_list.append("F")
-            EpicDict["F"] = eval(EpicDictValue)
+            EpicDict["F"] = EpicDictCounter
         elif unit == "s (afstand in Meter)":
             type_list.append("s")
-            EpicDict["s"] = eval(EpicDictValue)
+            EpicDict["s"] = EpicDictCounter
         elif unit == "Vgem (gemiddelde snelheid in Meter per Seconde)":
             type_list.append("Vgem")
-            EpicDict["Vgem"] = eval(EpicDictValue)
+            EpicDict["Vgem"] = EpicDictCounter
         elif unit == "t (tijd in Seconden)":
             type_list.append("t")
-            EpicDict["t"] = eval(EpicDictValue)
+            EpicDict["t"] = EpicDictCounter
         elif unit == "stoot (stoot in Newton Seconde)":
             type_list.append("stoot")
-            EpicDict["stoot"] = eval(EpicDictValue)
+            EpicDict["stoot"] = EpicDictCounter
         elif unit == "m (de massa in kilogram)":
             type_list.append("m")
-            EpicDict["m"] = eval(EpicDictValue)
+            EpicDict["m"] = EpicDictCounter
         elif unit == "Wz (arbeid om iets omhoog te tillen in Joule)":
             type_list.append("Wz")
-            EpicDict["Wz"] = eval(EpicDictValue)
+            EpicDict["Wz"] = EpicDictCounter
         elif unit == "g (9,81 newton per kilogram)":
             type_list.append("g")
-            EpicDict["g"] = eval(EpicDictValue)
+            EpicDict["g"] = EpicDictCounter
         elif unit == "h (de verplaatsing omhoog in meter)":
             type_list.append("h")
-            EpicDict["h"] = eval(EpicDictValue)
+            EpicDict["h"] = EpicDictCounter
         else:
             pass
         EpicDictCounter += 1
@@ -272,7 +268,18 @@ def findAndFormFormula(type_list):
 def runCalculation(formula, value_list):
     print(f"Formula: {formula}")
     print(f"Value list: {value_list}")
+
     print(EpicDict)
+    EpicDictCounter = int(0)
+    EpicDictCounterList = ["W", "F", "s", "Vgem", "t", "stoot", "m", "Wz", "g", "h"]
+    EpicDictDictCounter = int(0)
+    
+    print(EpicDict["W"])
+    if EpicDict["W"] == int(0):
+        EpicDict["W"] = value_list[0]
+
+    print(EpicDict)
+
     if formula == "W=F*s":
         answer_calculation = ttk.Label(formula_frm, text="W = F x s = " + "{0} x {1} = ".format(EpicDict["F"], EpicDict["s"]) + str(float(EpicDict["F"]) * float(EpicDict["s"])))
         answer_calculation.grid(column=1, row=5)
@@ -281,7 +288,7 @@ def runCalculation(formula, value_list):
     elif formula == "s=W/F":
         answer_calculation = ttk.Label(formula_frm, text="s = W ÷ F = " + "{0} ÷ {1} = ".format(EpicDict["W"], EpicDict["F"]) + str(float(EpicDict["W"]) / float(EpicDict["F"])))
         answer_calculation.grid(column=1, row=5)
-        return str(float(EpicDict["F"])/float(EpicDict["F"])) + " Meter."
+        return str(float(EpicDict["W"])/float(EpicDict["F"])) + " Meter."
     
     elif formula == "F=W/s":
         answer_calculation = ttk.Label(formula_frm, text="F = W ÷ s = " + "{0} ÷ {1} = ".format(EpicDict["W"], EpicDict["s"]) + str(float(EpicDict["W"]) / float(EpicDict["s"])))
