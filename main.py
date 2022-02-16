@@ -274,44 +274,48 @@ def runCalculation(formula, value_list):
     EpicDictCounterList = ["W", "F", "s", "Vgem", "t", "stoot", "m", "Wz", "g", "h"]
     EpicDictDictCounter = int(0)
     
-    print(EpicDict["W"])
-    if EpicDict["W"] == int(0):
-        EpicDict["W"] = value_list[0]
+    while True:
+        try:
+            print(EpicDict[EpicDictCounterList[EpicDictCounter]])
+            if EpicDict[EpicDictCounterList[EpicDictCounter]] == 0:
+                EpicDict[EpicDictCounterList[EpicDictCounter]] = value_list[0]
+            elif EpicDict[EpicDictCounterList[EpicDictCounter]] == 1:
+                EpicDict[EpicDictCounterList[EpicDictCounter]] = value_list[1]
+            elif EpicDict[EpicDictCounterList[EpicDictCounter]] == 2:
+                EpicDict[EpicDictCounterList[EpicDictCounter]] = value_list[2]
+            EpicDictCounter += 1
+        except:
+            break
+        
 
     print(EpicDict)
 
     if formula == "W=F*s":
-        answer_calculation = ttk.Label(formula_frm, text="W = F x s = " + "{0} x {1} = ".format(EpicDict["F"], EpicDict["s"]) + str(float(EpicDict["F"]) * float(EpicDict["s"])))
+        answer_calculation = ttk.Label(formula_frm, text="W = F x s = " + f"{EpicDict['F']} x {EpicDict['s']} = " + str(float(EpicDict["F"]) * float(EpicDict["s"])))
         answer_calculation.grid(column=1, row=5)
         return str(float(EpicDict["F"])*float(EpicDict["s"])) + " Joule."
 
     elif formula == "s=W/F":
-        answer_calculation = ttk.Label(formula_frm, text="s = W ÷ F = " + "{0} ÷ {1} = ".format(EpicDict["W"], EpicDict["F"]) + str(float(EpicDict["W"]) / float(EpicDict["F"])))
+        answer_calculation = ttk.Label(formula_frm, text="s = W ÷ F = " + f"{EpicDict['W']} ÷ {EpicDict['F']} = " + str(float(EpicDict["W"]) / float(EpicDict["F"])))
         answer_calculation.grid(column=1, row=5)
         return str(float(EpicDict["W"])/float(EpicDict["F"])) + " Meter."
     
     elif formula == "F=W/s":
-        answer_calculation = ttk.Label(formula_frm, text="F = W ÷ s = " + "{0} ÷ {1} = ".format(EpicDict["W"], EpicDict["s"]) + str(float(EpicDict["W"]) / float(EpicDict["s"])))
+        answer_calculation = ttk.Label(formula_frm, text="F = W ÷ s = " + f"{EpicDict['W']} ÷ {EpicDict['s']} = " + str(float(EpicDict["W"]) / float(EpicDict["s"])))
         answer_calculation.grid(column=1, row=5)
         return str(float(EpicDict["W"])/float(EpicDict["s"])) + " Newton."
     
 
-    elif formula == "stoot=1*2":
-        answer_calculation = ttk.Label(formula_frm, text="stoot = F x t = " + f"{value_list[0]} x {value_list[1]} = " + str(float(value_list[0]) * float(value_list[1])))
+    elif formula == "stoot=F*t":
+        answer_calculation = ttk.Label(formula_frm, text="stoot = F x t = " + f"{EpicDict['F']} x {EpicDict['t']} = " + str(float(EpicDict['F']) * float(EpicDict['t'])))
         answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[0])*float(value_list[1])) + " Newton Seconde."
-    elif formula == "stoot=2*1":
-        answer_calculation = ttk.Label(formula_frm, text="stoot = F x t = " + f"{value_list[1]} x {value_list[0]} = " + str(float(value_list[1]) * float(value_list[0])))
+        return str(float(EpicDict["F"])*float(EpicDict["t"])) + " Newton Seconde."
+
+    elif formula == "t=stoot/F":
+        answer_calculation = ttk.Label(formula_frm, text="t = stoot ÷ F = " + f"{EpicDict['stoot']} ÷ {EpicDict['F']} = " + str(float(EpicDict['stoot']) / float(EpicDict['F'])))
         answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[1])*float(value_list[0])) + " Newton Seconde."
-    elif formula == "t=1/2":
-        answer_calculation = ttk.Label(formula_frm, text="t = stoot ÷ F = " + f"{value_list[0]} ÷ {value_list[1]} = " + str(float(value_list[0]) / float(value_list[1])))
-        answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[0])/float(value_list[1])) + " Seconde."
-    elif formula == "t=2/1":
-        answer_calculation = ttk.Label(formula_frm, text="t = stoot ÷ F = " + f"{value_list[1]} ÷ {value_list[0]} = " + str(float(value_list[1]) / float(value_list[0])))
-        answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[1])/float(value_list[0])) + " Seconde."
+        return str(float(EpicDict['stoot'])/float(EpicDict['F'])) + " Seconde."
+    
     elif formula == "F=1/2":
         answer_calculation = ttk.Label(formula_frm, text="F = stoot ÷ t = " + f"{value_list[0]} ÷ {value_list[1]} = " + str(float(value_list[0]) / float(value_list[1])))
         answer_calculation.grid(column=1, row=5)
