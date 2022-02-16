@@ -596,7 +596,7 @@ def formulaFinder():
     ttk.Label(formula_frm, text="Derde Gegeven Waarde:").grid(column=2, row=2)
     value3 = ttk.Entry(formula_frm, width=20)
     value3.grid(column=3, row=2)
-    calculate_button = ttk.Button(formula_frm, command=lambda: showAnswer(runCalculation(findAndFormFormula(checkInputType(unit1.get(), unit2.get(), unit3.get())), checkForEmptyInput())), text="Bereken!")
+    calculate_button = ttk.Button(formula_frm, command=lambda: showAnswer(runCalculation(findAndFormFormula(checkInputType(unit1.get(), unit2.get(), unit3.get())), checkForEmptyInput(value1.get(), value2.get(), value3.get()))), text="Bereken!")
     calculate_button.grid(column=1, row=4)
     main_frm.destroy()
 
