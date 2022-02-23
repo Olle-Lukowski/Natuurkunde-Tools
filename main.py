@@ -316,31 +316,21 @@ def runCalculation(formula, value_list):
         answer_calculation.grid(column=1, row=5)
         return str(float(EpicDict['stoot'])/float(EpicDict['F'])) + " Seconde."
     
-    elif formula == "F=1/2":
-        answer_calculation = ttk.Label(formula_frm, text="F = stoot ÷ t = " + f"{value_list[0]} ÷ {value_list[1]} = " + str(float(value_list[0]) / float(value_list[1])))
+    elif formula == "F=stoot/t":
+        answer_calculation = ttk.Label(formula_frm, text="F = stoot ÷ t = " + f"{EpicDict['stoot']} ÷ {EpicDict['t']} = " + str(float(EpicDict['stoot']) / float(EpicDict['t'])))
         answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[0])/float(value_list[1])) + " Newton."
-    elif formula == "F=2/1":
-        answer_calculation = ttk.Label(formula_frm, text="F = stoot ÷ t = " + f"{value_list[1]} ÷ {value_list[0]} = " + str(float(value_list[1]) / float(value_list[0])))
-        answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[1])/float(value_list[0])) + " Newton."
+        return str(float(EpicDict['stoot'])/float(EpicDict['t'])) + " Newton."
 
-    elif formula == "Vgem=1/2":
-        answer_calculation = ttk.Label(formula_frm, text="Vgem = s ÷ t = " + f"{value_list[0]} ÷ {value_list[1]} = " + str(float(value_list[0]) / float(value_list[1])))
+    elif formula == "Vgem=s/t":
+        answer_calculation = ttk.Label(formula_frm, text="Vgem = s ÷ t = " + f"{EpicDict['s']} ÷ {EpicDict['t']} = " + str(float(value_list[0]) / float(value_list[1])))
         answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[0])/float(value_list[1])) + " Meter per Seconde."
-    elif formula == "Vgem=2/1":
-        answer_calculation = ttk.Label(formula_frm, text="Vgem = s ÷ t = " + f"{value_list[1]} ÷ {value_list[0]} = " + str(float(value_list[1]) / float(value_list[0])))
-        answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[1])/float(value_list[0])) + " Meter per Seconde."
-    elif formula == "t=2/1":
-        answer_calculation = ttk.Label(formula_frm, text="t = s ÷ Vgem = " + f"{value_list[1]} ÷ {value_list[0]} = " + str(float(value_list[1]) / float(value_list[0])))
+        return str(float(EpicDict['s'])/float(EpicDict['t'])) + " Meter per Seconde."
+
+    elif formula == "t=s/Vgem":
+        answer_calculation = ttk.Label(formula_frm, text="t = s ÷ Vgem = " + f"{EpicDict['s']} ÷ {EpicDict['Vgem']} = " + str(float(value_list[1]) / float(value_list[0])))
         answer_calculation.grid(column=1, row=5)
         return str(float(value_list[1])/float(value_list[0])) + " Seconde."
-    elif formula == "t=1/2":
-        answer_calculation = ttk.Label(formula_frm, text="t = s ÷ Vgem = " + f"{value_list[0]} ÷ {value_list[1]} = " + str(float(value_list[0]) / float(value_list[1])))
-        answer_calculation.grid(column=1, row=5)
-        return str(float(value_list[0])/float(value_list[1])) + " Seconde."
+
     elif formula == "s=1*2":
         answer_calculation = ttk.Label(formula_frm, text="s = Vgem x t = " + f"{value_list[0]} x {value_list[1]} = " + str(float(value_list[0]) * float(value_list[1])))
         answer_calculation.grid(column=1, row=5)
